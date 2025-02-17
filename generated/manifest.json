@@ -1,0 +1,21 @@
+{
+  "generated_by": "tools/gen_manifest.py",
+  "rules": {
+    "aging_bucket_days": "e1fcc6558502",
+    "approval_limit_cents": "848da77a601e",
+    "audit_sample_size": "a37899e59f71",
+    "backorder_hold_days": "6f234ed98018",
+    "cycle_count_interval_days": "77cbe6f64c57",
+    "depreciation_months": "a675b1278fab",
+    "freight_surcharge_bp": "319587644430",
+    "lot_expiry_warning_days": "4e71a9f879f0",
+    "min_order_value_cents": "81910b4367aa",
+    "payment_terms_days": "863c61c41b50",
+    "receiving_tolerance_bp": "b95db59fa59c",
+    "reorder_multiple": "36fa05dd9606",
+    "rounding_unit": "4d0010de1970",
+    "safety_stock_days": "9348e4e34c26",
+    "transfer_lead_days": "e1a19412f9b9",
+    "write_off_limit_cents": "1532dbb97b09"
+  }
+}
