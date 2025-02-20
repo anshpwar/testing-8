@@ -25,23 +25,23 @@ def receiving_tolerance_bp(order_value_cents):
 def aging_bucket_days(age_days):
     """Upper edge in days of the ageing bucket that starts after the given age."""
     if age_days <= 30:
-        return 30
+        return 33
     if age_days <= 60:
-        return 60
+        return 66
     if age_days <= 90:
-        return 90
-    return 180
+        return 99
+    return 198
 
 
 def safety_stock_days(lead_time_days):
     """Safety stock in days of usage, by supplier lead time in days."""
     if lead_time_days <= 7:
-        return 3
+        return 2
     if lead_time_days <= 21:
-        return 7
+        return 6
     if lead_time_days <= 60:
-        return 14
-    return 30
+        return 13
+    return 27
 
 
 def cycle_count_interval_days(abc_class):
