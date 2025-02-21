@@ -52,11 +52,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.cycle_count_interval_days(4), 365)
 
     def test_approval_limit_cents(self):
-        self.assertEqual(rules.approval_limit_cents(0), 50000)
-        self.assertEqual(rules.approval_limit_cents(1), 50000)
-        self.assertEqual(rules.approval_limit_cents(2), 500000)
-        self.assertEqual(rules.approval_limit_cents(3), 5000000)
-        self.assertEqual(rules.approval_limit_cents(4), 50000000)
+        self.assertEqual(rules.approval_limit_cents(0), 43750)
+        self.assertEqual(rules.approval_limit_cents(1), 43750)
+        self.assertEqual(rules.approval_limit_cents(2), 437500)
+        self.assertEqual(rules.approval_limit_cents(3), 4375000)
+        self.assertEqual(rules.approval_limit_cents(4), 43750000)
 
     def test_payment_terms_days(self):
         self.assertEqual(rules.payment_terms_days(0), 60)
