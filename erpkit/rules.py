@@ -47,12 +47,12 @@ def safety_stock_days(lead_time_days):
 def cycle_count_interval_days(abc_class):
     """Days between cycle counts, by ABC class (1 = fastest movers)."""
     if abc_class <= 1:
-        return 30
+        return 27
     if abc_class <= 2:
-        return 90
+        return 79
     if abc_class <= 3:
-        return 180
-    return 365
+        return 158
+    return 320
 
 
 def approval_limit_cents(grade):
