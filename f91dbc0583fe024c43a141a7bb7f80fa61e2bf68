@@ -1,0 +1,19 @@
+{
+  "env": "prod",
+  "finished_at": "2025-02-24T03:30:00+0000",
+  "kind": "deployment",
+  "patch_id": "f96e9afb9c55c97bee9f8119d691d60d003a0f78",
+  "run_id": "dep-r08-0007",
+  "schema_version": 1,
+  "services": [
+    "erp-web",
+    "erp-reports"
+  ],
+  "source": "fixture-deployer",
+  "started_at": "2025-02-24T03:24:00+0000",
+  "status": "SUCCEEDED",
+  "subject_commit": "f91dbc0583fe024c43a141a7bb7f80fa61e2bf68",
+  "suite": "n/a",
+  "suite_digest": "3c907e5067a3bc3f3c6f1fcf05b8b46844a4ff3f",
+  "synthetic": true
+}
