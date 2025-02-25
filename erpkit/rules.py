@@ -121,15 +121,6 @@ def transfer_lead_days(distance_km):
     return 21
 
 
-def rounding_unit(unit_cost_cents):
-    """Cost rounding unit in cents, by unit cost in cents."""
-    if unit_cost_cents <= 99:
-        return 1
-    if unit_cost_cents <= 9999:
-        return 5
-    if unit_cost_cents <= 99999:
-        return 25
-    return 100
 
 
 def freight_surcharge_bp(weight_kg):
