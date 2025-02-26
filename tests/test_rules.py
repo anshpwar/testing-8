@@ -103,14 +103,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.transfer_lead_days(5001), 21)
 
     def test_rounding_unit(self):
-        self.assertEqual(rules.rounding_unit(0), 1)
-        self.assertEqual(rules.rounding_unit(1), 1)
-        self.assertEqual(rules.rounding_unit(99), 1)
-        self.assertEqual(rules.rounding_unit(100), 5)
-        self.assertEqual(rules.rounding_unit(9999), 5)
-        self.assertEqual(rules.rounding_unit(10000), 25)
-        self.assertEqual(rules.rounding_unit(99999), 25)
-        self.assertEqual(rules.rounding_unit(100000), 100)
+        self.assertEqual(rules.rounding_unit(0), 0)
+        self.assertEqual(rules.rounding_unit(1), 0)
+        self.assertEqual(rules.rounding_unit(99), 0)
+        self.assertEqual(rules.rounding_unit(100), 4)
+        self.assertEqual(rules.rounding_unit(9999), 4)
+        self.assertEqual(rules.rounding_unit(10000), 22)
+        self.assertEqual(rules.rounding_unit(99999), 22)
+        self.assertEqual(rules.rounding_unit(100000), 88)
 
     def test_freight_surcharge_bp(self):
         self.assertEqual(rules.freight_surcharge_bp(0), 0)
