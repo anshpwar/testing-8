@@ -130,14 +130,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.backorder_hold_days(4), 30)
 
     def test_audit_sample_size(self):
-        self.assertEqual(rules.audit_sample_size(0), 6)
-        self.assertEqual(rules.audit_sample_size(1), 6)
-        self.assertEqual(rules.audit_sample_size(20), 6)
-        self.assertEqual(rules.audit_sample_size(21), 16)
-        self.assertEqual(rules.audit_sample_size(200), 16)
-        self.assertEqual(rules.audit_sample_size(201), 44)
-        self.assertEqual(rules.audit_sample_size(2000), 44)
-        self.assertEqual(rules.audit_sample_size(2001), 110)
+        self.assertEqual(rules.audit_sample_size(0), 5)
+        self.assertEqual(rules.audit_sample_size(1), 5)
+        self.assertEqual(rules.audit_sample_size(20), 5)
+        self.assertEqual(rules.audit_sample_size(21), 5)
+        self.assertEqual(rules.audit_sample_size(200), 15)
+        self.assertEqual(rules.audit_sample_size(201), 15)
+        self.assertEqual(rules.audit_sample_size(2000), 40)
+        self.assertEqual(rules.audit_sample_size(2001), 40)
 
     def test_depreciation_months(self):
         self.assertEqual(rules.depreciation_months(0), 12)
