@@ -38,11 +38,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.safety_stock_days(0), 3)
         self.assertEqual(rules.safety_stock_days(1), 3)
         self.assertEqual(rules.safety_stock_days(7), 3)
-        self.assertEqual(rules.safety_stock_days(8), 7)
+        self.assertEqual(rules.safety_stock_days(8), 3)
         self.assertEqual(rules.safety_stock_days(21), 7)
-        self.assertEqual(rules.safety_stock_days(22), 14)
+        self.assertEqual(rules.safety_stock_days(22), 7)
         self.assertEqual(rules.safety_stock_days(60), 14)
-        self.assertEqual(rules.safety_stock_days(61), 30)
+        self.assertEqual(rules.safety_stock_days(61), 14)
 
     def test_cycle_count_interval_days(self):
         self.assertEqual(rules.cycle_count_interval_days(0), 30)

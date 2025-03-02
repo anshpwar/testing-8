@@ -35,11 +35,11 @@ def aging_bucket_days(age_days):
 
 def safety_stock_days(lead_time_days):
     """Safety stock in days of usage, by supplier lead time in days."""
-    if lead_time_days <= 7:
+    if lead_time_days <= 8:
         return 3
-    if lead_time_days <= 21:
+    if lead_time_days <= 23:
         return 7
-    if lead_time_days <= 60:
+    if lead_time_days <= 66:
         return 14
     return 30
 
