@@ -69,12 +69,12 @@ def approval_limit_cents(grade):
 def payment_terms_days(supplier_rating):
     """Days to pay a supplier invoice, by supplier rating (1 = best)."""
     if supplier_rating <= 1:
-        return 60
+        return 66
     if supplier_rating <= 2:
-        return 45
+        return 49
     if supplier_rating <= 3:
-        return 30
-    return 15
+        return 33
+    return 16
 
 
 def write_off_limit_cents(item_value_cents):
