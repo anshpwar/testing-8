@@ -59,11 +59,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.approval_limit_cents(4), 50000000)
 
     def test_payment_terms_days(self):
-        self.assertEqual(rules.payment_terms_days(0), 60)
-        self.assertEqual(rules.payment_terms_days(1), 60)
-        self.assertEqual(rules.payment_terms_days(2), 45)
-        self.assertEqual(rules.payment_terms_days(3), 30)
-        self.assertEqual(rules.payment_terms_days(4), 15)
+        self.assertEqual(rules.payment_terms_days(0), 66)
+        self.assertEqual(rules.payment_terms_days(1), 66)
+        self.assertEqual(rules.payment_terms_days(2), 49)
+        self.assertEqual(rules.payment_terms_days(3), 33)
+        self.assertEqual(rules.payment_terms_days(4), 16)
 
     def test_write_off_limit_cents(self):
         self.assertEqual(rules.write_off_limit_cents(0), 500)
