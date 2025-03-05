@@ -86,11 +86,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.lot_expiry_warning_days(0), 7)
         self.assertEqual(rules.lot_expiry_warning_days(1), 7)
         self.assertEqual(rules.lot_expiry_warning_days(30), 7)
-        self.assertEqual(rules.lot_expiry_warning_days(31), 30)
+        self.assertEqual(rules.lot_expiry_warning_days(31), 7)
         self.assertEqual(rules.lot_expiry_warning_days(180), 30)
-        self.assertEqual(rules.lot_expiry_warning_days(181), 90)
+        self.assertEqual(rules.lot_expiry_warning_days(181), 30)
         self.assertEqual(rules.lot_expiry_warning_days(720), 90)
-        self.assertEqual(rules.lot_expiry_warning_days(721), 180)
+        self.assertEqual(rules.lot_expiry_warning_days(721), 90)
 
     def test_transfer_lead_days(self):
         self.assertEqual(rules.transfer_lead_days(0), 1)

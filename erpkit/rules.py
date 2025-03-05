@@ -101,11 +101,11 @@ def min_order_value_cents(supplier_tier):
 
 def lot_expiry_warning_days(shelf_life_days):
     """Days before expiry that a lot is flagged, by shelf life in days."""
-    if shelf_life_days <= 30:
+    if shelf_life_days <= 33:
         return 7
-    if shelf_life_days <= 180:
+    if shelf_life_days <= 198:
         return 30
-    if shelf_life_days <= 720:
+    if shelf_life_days <= 792:
         return 90
     return 180
 
