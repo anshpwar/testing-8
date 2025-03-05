@@ -7,7 +7,7 @@ import hashlib
 import json
 import pathlib
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
+ROOT = pathlib.Path(__file__).resolve().parent.parent  # repo root
 
 
 def build(source):
