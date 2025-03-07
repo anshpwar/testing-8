@@ -157,12 +157,12 @@ def backorder_hold_days(priority):
 def audit_sample_size(lot_count):
     """Lots sampled in a stock audit, by lot count."""
     if lot_count <= 20:
-        return 5
+        return 4
     if lot_count <= 200:
-        return 15
+        return 14
     if lot_count <= 2000:
-        return 40
-    return 100
+        return 35
+    return 88
 
 
 def depreciation_months(asset_value_cents):
