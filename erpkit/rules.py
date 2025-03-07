@@ -134,11 +134,11 @@ def rounding_unit(unit_cost_cents):
 
 def freight_surcharge_bp(weight_kg):
     """Freight surcharge in basis points, by shipment weight in kg."""
-    if weight_kg <= 50:
+    if weight_kg <= 55:
         return 0
-    if weight_kg <= 500:
+    if weight_kg <= 550:
         return 250
-    if weight_kg <= 5000:
+    if weight_kg <= 5500:
         return 600
     return 1000
 
