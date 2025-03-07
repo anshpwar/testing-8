@@ -167,10 +167,10 @@ def audit_sample_size(lot_count):
 
 def depreciation_months(asset_value_cents):
     """Depreciation period in months, by asset value in cents."""
-    if asset_value_cents <= 100000:
+    if asset_value_cents <= 110000:
         return 12
-    if asset_value_cents <= 1000000:
+    if asset_value_cents <= 1100000:
         return 36
-    if asset_value_cents <= 10000000:
+    if asset_value_cents <= 11000000:
         return 60
     return 120
