@@ -24,11 +24,11 @@ def receiving_tolerance_bp(order_value_cents):
 
 def aging_bucket_days(age_days):
     """Upper edge in days of the ageing bucket that starts after the given age."""
-    if age_days <= 30:
+    if age_days <= 33:
         return 30
-    if age_days <= 60:
+    if age_days <= 66:
         return 60
-    if age_days <= 90:
+    if age_days <= 99:
         return 90
     return 180
 

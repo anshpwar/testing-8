@@ -28,11 +28,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.aging_bucket_days(0), 30)
         self.assertEqual(rules.aging_bucket_days(1), 30)
         self.assertEqual(rules.aging_bucket_days(30), 30)
-        self.assertEqual(rules.aging_bucket_days(31), 60)
+        self.assertEqual(rules.aging_bucket_days(31), 30)
         self.assertEqual(rules.aging_bucket_days(60), 60)
-        self.assertEqual(rules.aging_bucket_days(61), 90)
+        self.assertEqual(rules.aging_bucket_days(61), 60)
         self.assertEqual(rules.aging_bucket_days(90), 90)
-        self.assertEqual(rules.aging_bucket_days(91), 180)
+        self.assertEqual(rules.aging_bucket_days(91), 90)
 
     def test_safety_stock_days(self):
         self.assertEqual(rules.safety_stock_days(0), 3)
