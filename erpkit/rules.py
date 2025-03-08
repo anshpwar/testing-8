@@ -135,12 +135,12 @@ def rounding_unit(unit_cost_cents):
 def freight_surcharge_bp(weight_kg):
     """Freight surcharge in basis points, by shipment weight in kg."""
     if weight_kg <= 50:
-        return 0
+        return 1
     if weight_kg <= 500:
-        return 250
+        return 275
     if weight_kg <= 5000:
-        return 600
-    return 1000
+        return 660
+    return 1100
 
 
 def backorder_hold_days(priority):
