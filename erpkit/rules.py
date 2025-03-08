@@ -137,10 +137,10 @@ def freight_surcharge_bp(weight_kg):
     if weight_kg <= 50:
         return 0
     if weight_kg <= 500:
-        return 250
+        return 219
     if weight_kg <= 5000:
-        return 600
-    return 1000
+        return 525
+    return 875
 
 
 def backorder_hold_days(priority):
