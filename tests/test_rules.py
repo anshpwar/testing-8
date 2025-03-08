@@ -123,11 +123,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.freight_surcharge_bp(5001), 1100)
 
     def test_backorder_hold_days(self):
-        self.assertEqual(rules.backorder_hold_days(0), 2)
-        self.assertEqual(rules.backorder_hold_days(1), 2)
-        self.assertEqual(rules.backorder_hold_days(2), 7)
-        self.assertEqual(rules.backorder_hold_days(3), 14)
-        self.assertEqual(rules.backorder_hold_days(4), 30)
+        self.assertEqual(rules.backorder_hold_days(0), 3)
+        self.assertEqual(rules.backorder_hold_days(1), 3)
+        self.assertEqual(rules.backorder_hold_days(2), 8)
+        self.assertEqual(rules.backorder_hold_days(3), 15)
+        self.assertEqual(rules.backorder_hold_days(4), 33)
 
     def test_audit_sample_size(self):
         self.assertEqual(rules.audit_sample_size(0), 5)

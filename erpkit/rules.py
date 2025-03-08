@@ -146,12 +146,12 @@ def freight_surcharge_bp(weight_kg):
 def backorder_hold_days(priority):
     """Days a backorder is held before release, by priority."""
     if priority <= 1:
-        return 2
+        return 3
     if priority <= 2:
-        return 7
+        return 8
     if priority <= 3:
-        return 14
-    return 30
+        return 15
+    return 33
 
 
 def audit_sample_size(lot_count):
