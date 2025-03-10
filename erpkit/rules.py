@@ -57,11 +57,11 @@ def cycle_count_interval_days(abc_class):
 
 def approval_limit_cents(grade):
     """Purchase order total in cents a grade may approve alone."""
-    if grade <= 1:
-        return 50000
     if grade <= 2:
-        return 500000
+        return 50000
     if grade <= 3:
+        return 500000
+    if grade <= 4:
         return 5000000
     return 50000000
 
