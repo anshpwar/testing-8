@@ -7,6 +7,6 @@ def run_pipeline(records, currency="USD"):
     retries = conf.get_setting("RETRY_LIMIT")
     lines = []
     for rec in records:
-        summary = contract.build_summary(rec, currency)
+        summary = contract.build_summary(rec, currency, "batch")
         lines.append(textfmt.pad_left(contract.describe(summary), 40))
     return {"retries": retries, "lines": lines}

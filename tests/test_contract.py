@@ -7,8 +7,8 @@ class ContractTests(unittest.TestCase):
     def test_build_summary(self):
         rec = contract.Record("SM-1", 1250, "open")
         self.assertEqual(
-            contract.build_summary(rec),
-            {"ref": "SM-1", "amount": 1250, "status": "open", "currency": "USD"},
+            contract.build_summary(rec, "USD", "api"),
+            {"ref": "SM-1", "amount": 1250, "status": "open", "currency": "USD", "channel": "api"},
         )
 
     def test_describe(self):

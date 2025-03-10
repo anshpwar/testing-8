@@ -9,13 +9,14 @@ class Record:
     status: str
 
 
-def build_summary(record, currency="USD"):
+def build_summary(record, currency, channel):
     """Summary payload consumed by the API layer and the nightly reports."""
     return {
         "ref": record.ref,
         "amount": record.amount_cents,
         "status": record.status,
         "currency": currency,
+        "channel": channel,
     }
 
 
