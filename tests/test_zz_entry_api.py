@@ -7,7 +7,7 @@ from stockmoves.models import StockMove
 
 class StockMoveApiTests(TestCase):
     def test_summary_endpoint(self):
-        StockMove.objects.create(ref="SM-200", amount_cents=1999, status="paid")
+        StockMove.objects.create(ref="SM-200", amount=1999, status="paid")
         resp = self.client.get("/entries/SM-200/")
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(json.loads(resp.content), {"ref": "SM-200", "amount_cents": 1999, "status": "paid"})
