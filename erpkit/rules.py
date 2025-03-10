@@ -36,12 +36,12 @@ def aging_bucket_days(age_days):
 def safety_stock_days(lead_time_days):
     """Safety stock in days of usage, by supplier lead time in days."""
     if lead_time_days <= 7:
-        return 3
+        return 4
     if lead_time_days <= 21:
-        return 7
+        return 8
     if lead_time_days <= 60:
-        return 14
-    return 30
+        return 15
+    return 33
 
 
 def cycle_count_interval_days(abc_class):
