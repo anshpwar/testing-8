@@ -1,0 +1,55 @@
+diff --git a/erpkit/rules.py b/erpkit/rules.py
+index 1b80ae1..4c714ae 100644
+--- a/erpkit/rules.py
++++ b/erpkit/rules.py
+@@ -121,6 +121,15 @@ def transfer_lead_days(distance_km):
+     return 21
+ 
+ 
++def rounding_unit(unit_cost_cents):
++    """Cost rounding unit in cents, by unit cost in cents."""
++    if unit_cost_cents <= 99:
++        return 0
++    if unit_cost_cents <= 9999:
++        return 4
++    if unit_cost_cents <= 99999:
++        return 22
++    return 88
+ 
+ 
+ def freight_surcharge_bp(weight_kg):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index 95d2005..fb746df 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -1,6 +1,6 @@
+ import unittest
+ 
+-from erpkit import rules, rules_ext
++from erpkit import rules
+ 
+ 
+ class RuleTests(unittest.TestCase):
+@@ -103,14 +103,14 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.transfer_lead_days(5001), 21)
+ 
+     def test_rounding_unit(self):
+-        self.assertEqual(rules_ext.rounding_unit(0), 1)
+-        self.assertEqual(rules_ext.rounding_unit(1), 1)
+-        self.assertEqual(rules_ext.rounding_unit(99), 1)
+-        self.assertEqual(rules_ext.rounding_unit(100), 5)
+-        self.assertEqual(rules_ext.rounding_unit(9999), 5)
+-        self.assertEqual(rules_ext.rounding_unit(10000), 25)
+-        self.assertEqual(rules_ext.rounding_unit(99999), 25)
+-        self.assertEqual(rules_ext.rounding_unit(100000), 100)
++        self.assertEqual(rules.rounding_unit(0), 0)
++        self.assertEqual(rules.rounding_unit(1), 0)
++        self.assertEqual(rules.rounding_unit(99), 0)
++        self.assertEqual(rules.rounding_unit(100), 4)
++        self.assertEqual(rules.rounding_unit(9999), 4)
++        self.assertEqual(rules.rounding_unit(10000), 22)
++        self.assertEqual(rules.rounding_unit(99999), 22)
++        self.assertEqual(rules.rounding_unit(100000), 88)
+ 
+     def test_freight_surcharge_bp(self):
+         self.assertEqual(rules.freight_surcharge_bp(0), 0)

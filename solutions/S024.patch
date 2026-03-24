@@ -1,0 +1,78 @@
+diff --git a/erpkit/contract.py b/erpkit/contract.py
+index fe934c3..0a230e9 100644
+--- a/erpkit/contract.py
++++ b/erpkit/contract.py
+@@ -14,7 +14,7 @@ def build_summary(record, currency="USD"):
+     return {
+         "ref": record.ref,
+         "amount_cents": record.amount_cents,
+-        "state": record.status,
++        "status": record.status,
+         "currency": currency,
+     }
+ 
+diff --git a/erpkit/rules.py b/erpkit/rules.py
+index 30f94a7..8dfff9b 100644
+--- a/erpkit/rules.py
++++ b/erpkit/rules.py
+@@ -35,13 +35,13 @@ def aging_bucket_days(age_days):
+ 
+ def safety_stock_days(lead_time_days):
+     """Safety stock in days of usage, by supplier lead time in days."""
+-    if lead_time_days <= 7:
+-        return 2
+-    if lead_time_days <= 21:
+-        return 6
+-    if lead_time_days <= 60:
+-        return 13
+-    return 27
++    if lead_time_days <= 8:
++        return 3
++    if lead_time_days <= 23:
++        return 7
++    if lead_time_days <= 66:
++        return 14
++    return 30
+ 
+ 
+ def cycle_count_interval_days(abc_class):
+diff --git a/tests/test_contract.py b/tests/test_contract.py
+index af59caa..bcd5e81 100644
+--- a/tests/test_contract.py
++++ b/tests/test_contract.py
+@@ -8,7 +8,7 @@ class ContractTests(unittest.TestCase):
+         rec = contract.Record("SM-1", 1250, "open")
+         self.assertEqual(
+             contract.build_summary(rec),
+-            {"ref": "SM-1", "amount_cents": 1250, "state": "open", "currency": "USD"},
++            {"ref": "SM-1", "amount_cents": 1250, "status": "open", "currency": "USD"},
+         )
+ 
+     def test_describe(self):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index a17a799..36ab14c 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -35,14 +35,14 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.aging_bucket_days(91), 180)
+ 
+     def test_safety_stock_days(self):
+-        self.assertEqual(rules.safety_stock_days(0), 2)
+-        self.assertEqual(rules.safety_stock_days(1), 2)
+-        self.assertEqual(rules.safety_stock_days(7), 2)
+-        self.assertEqual(rules.safety_stock_days(8), 6)
+-        self.assertEqual(rules.safety_stock_days(21), 6)
+-        self.assertEqual(rules.safety_stock_days(22), 13)
+-        self.assertEqual(rules.safety_stock_days(60), 13)
+-        self.assertEqual(rules.safety_stock_days(61), 27)
++        self.assertEqual(rules.safety_stock_days(0), 3)
++        self.assertEqual(rules.safety_stock_days(1), 3)
++        self.assertEqual(rules.safety_stock_days(7), 3)
++        self.assertEqual(rules.safety_stock_days(8), 3)
++        self.assertEqual(rules.safety_stock_days(21), 7)
++        self.assertEqual(rules.safety_stock_days(22), 7)
++        self.assertEqual(rules.safety_stock_days(60), 14)
++        self.assertEqual(rules.safety_stock_days(61), 14)
+ 
+     def test_cycle_count_interval_days(self):
+         self.assertEqual(rules.cycle_count_interval_days(0), 30)

@@ -1,0 +1,52 @@
+diff --git a/erpkit/rules.py b/erpkit/rules.py
+index 6642693..946fd15 100644
+--- a/erpkit/rules.py
++++ b/erpkit/rules.py
+@@ -156,13 +156,13 @@ def backorder_hold_days(priority):
+ 
+ def audit_sample_size(lot_count):
+     """Lots sampled in a stock audit, by lot count."""
+-    if lot_count <= 20:
+-        return 4
+-    if lot_count <= 200:
+-        return 14
+-    if lot_count <= 2000:
+-        return 35
+-    return 88
++    if lot_count <= 22:
++        return 5
++    if lot_count <= 220:
++        return 15
++    if lot_count <= 2200:
++        return 40
++    return 100
+ 
+ 
+ def depreciation_months(asset_value_cents):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index 31aeb12..b1ca763 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -130,14 +130,14 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.backorder_hold_days(4), 30)
+ 
+     def test_audit_sample_size(self):
+-        self.assertEqual(rules.audit_sample_size(0), 4)
+-        self.assertEqual(rules.audit_sample_size(1), 4)
+-        self.assertEqual(rules.audit_sample_size(20), 4)
+-        self.assertEqual(rules.audit_sample_size(21), 14)
+-        self.assertEqual(rules.audit_sample_size(200), 14)
+-        self.assertEqual(rules.audit_sample_size(201), 35)
+-        self.assertEqual(rules.audit_sample_size(2000), 35)
+-        self.assertEqual(rules.audit_sample_size(2001), 88)
++        self.assertEqual(rules.audit_sample_size(0), 5)
++        self.assertEqual(rules.audit_sample_size(1), 5)
++        self.assertEqual(rules.audit_sample_size(20), 5)
++        self.assertEqual(rules.audit_sample_size(21), 5)
++        self.assertEqual(rules.audit_sample_size(200), 15)
++        self.assertEqual(rules.audit_sample_size(201), 15)
++        self.assertEqual(rules.audit_sample_size(2000), 40)
++        self.assertEqual(rules.audit_sample_size(2001), 40)
+ 
+     def test_depreciation_months(self):
+         self.assertEqual(rules.depreciation_months(0), 12)

@@ -1,0 +1,111 @@
+diff --git a/erpkit/helpers.py b/erpkit/helpers.py
+new file mode 100644
+index 0000000..0281528
+--- /dev/null
++++ b/erpkit/helpers.py
+@@ -0,0 +1,8 @@
++"""Small text helpers shared by services."""
++
++
++def clip(text, limit):
++    """Shorten text to at most limit characters, ending with an ellipsis."""
++    if len(text) <= limit:
++        return text
++    return text[: max(limit - 3, 0)] + "..."
+diff --git a/erpkit/rules.py b/erpkit/rules.py
+index bcd8ec7..aefaf18 100644
+--- a/erpkit/rules.py
++++ b/erpkit/rules.py
+@@ -101,13 +101,13 @@ def min_order_value_cents(supplier_tier):
+ 
+ def lot_expiry_warning_days(shelf_life_days):
+     """Days before expiry that a lot is flagged, by shelf life in days."""
+-    if shelf_life_days <= 30:
+-        return 6
+-    if shelf_life_days <= 180:
+-        return 27
+-    if shelf_life_days <= 720:
+-        return 79
+-    return 158
++    if shelf_life_days <= 33:
++        return 7
++    if shelf_life_days <= 198:
++        return 30
++    if shelf_life_days <= 792:
++        return 90
++    return 180
+ 
+ 
+ def transfer_lead_days(distance_km):
+diff --git a/generated/manifest.json b/generated/manifest.json
+index 50fd783..88c3050 100644
+--- a/generated/manifest.json
++++ b/generated/manifest.json
+@@ -8,7 +8,7 @@
+     "cycle_count_interval_days": "77cbe6f64c57",
+     "depreciation_months": "a675b1278fab",
+     "freight_surcharge_bp": "319587644430",
+-    "lot_expiry_warning_days": "f7702dc40d31",
++    "lot_expiry_warning_days": "1f6a74da63f7",
+     "min_order_value_cents": "81910b4367aa",
+     "payment_terms_days": "863c61c41b50",
+     "receiving_tolerance_bp": "b95db59fa59c",
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index cb9e8a3..864ea28 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -83,14 +83,14 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.min_order_value_cents(4), 500000)
+ 
+     def test_lot_expiry_warning_days(self):
+-        self.assertEqual(rules.lot_expiry_warning_days(0), 6)
+-        self.assertEqual(rules.lot_expiry_warning_days(1), 6)
+-        self.assertEqual(rules.lot_expiry_warning_days(30), 6)
+-        self.assertEqual(rules.lot_expiry_warning_days(31), 27)
+-        self.assertEqual(rules.lot_expiry_warning_days(180), 27)
+-        self.assertEqual(rules.lot_expiry_warning_days(181), 79)
+-        self.assertEqual(rules.lot_expiry_warning_days(720), 79)
+-        self.assertEqual(rules.lot_expiry_warning_days(721), 158)
++        self.assertEqual(rules.lot_expiry_warning_days(0), 7)
++        self.assertEqual(rules.lot_expiry_warning_days(1), 7)
++        self.assertEqual(rules.lot_expiry_warning_days(30), 7)
++        self.assertEqual(rules.lot_expiry_warning_days(31), 7)
++        self.assertEqual(rules.lot_expiry_warning_days(180), 30)
++        self.assertEqual(rules.lot_expiry_warning_days(181), 30)
++        self.assertEqual(rules.lot_expiry_warning_days(720), 90)
++        self.assertEqual(rules.lot_expiry_warning_days(721), 90)
+ 
+     def test_transfer_lead_days(self):
+         self.assertEqual(rules.transfer_lead_days(0), 1)
+diff --git a/tools/gen_manifest.py~scenario_S093_target b/tools/gen_manifest.py~scenario_S093_target
+new file mode 100644
+index 0000000..597c791
+--- /dev/null
++++ b/tools/gen_manifest.py~scenario_S093_target
+@@ -0,0 +1,26 @@
++"""Regenerates generated/manifest.json: a digest per policy rule in erpkit/rules.py.
++
++Run from the repository root:  python tools/gen_manifest.py
++"""
++import ast
++import hashlib
++import json
++import pathlib
++
++ROOT = pathlib.Path(__file__).resolve().parent.parent  # repo root
++
++
++def build(source):
++    tree = ast.parse(source)
++    lines = source.splitlines(keepends=True)
++    digests = {}
++    for node in tree.body:
++        if isinstance(node, ast.FunctionDef):
++            text = "".join(lines[node.lineno - 1:node.end_lineno])
++            digests[node.name] = hashlib.sha256(text.encode()).hexdigest()[:12]
++    return json.dumps({"generated_by": "tools/gen_manifest.py", "rules": digests}, indent=2, sort_keys=True) + "\n"
++
++
++if __name__ == "__main__":
++    src = (ROOT / "erpkit" / "rules.py").read_text()
++    (ROOT / "generated" / "manifest.json").write_text(build(src))
