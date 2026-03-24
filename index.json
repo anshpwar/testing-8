@@ -1,0 +1,101 @@
+[
+  {
+    "scenario_id": "S073",
+    "catalog_ids": [
+      73
+    ],
+    "difficulty": 1,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Binary rate table changed on both sides"
+  },
+  {
+    "scenario_id": "S033",
+    "catalog_ids": [
+      33
+    ],
+    "difficulty": 2,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Interrupted test run on one side"
+  },
+  {
+    "scenario_id": "S043",
+    "catalog_ids": [
+      43
+    ],
+    "difficulty": 2,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Repository cloned without its notes"
+  },
+  {
+    "scenario_id": "S010",
+    "catalog_ids": [
+      10
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Function deleted and later recreated elsewhere"
+  },
+  {
+    "scenario_id": "S014",
+    "catalog_ids": [
+      14
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "One fix backported to three release lines"
+  },
+  {
+    "scenario_id": "S024",
+    "catalog_ids": [
+      24
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Unit tests pass while integration tests fail"
+  },
+  {
+    "scenario_id": "S057",
+    "catalog_ids": [
+      57
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "EVIDENCE_ONLY",
+    "title": "Author and committer rewritten, patch unchanged"
+  },
+  {
+    "scenario_id": "S093",
+    "catalog_ids": [
+      93,
+      71,
+      95
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Symlink and mode change against a content edit"
+  },
+  {
+    "scenario_id": "S063",
+    "catalog_ids": [
+      63,
+      65,
+      67
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Merge commit reverted with -m"
+  },
+  {
+    "scenario_id": "S083",
+    "catalog_ids": [
+      83,
+      78,
+      81,
+      76,
+      26,
+      37
+    ],
+    "difficulty": 5,
+    "expected_git_outcome": "CLEAN_BUT_BROKEN",
+    "title": "Clean merge, failing integrated application"
+  }
+]

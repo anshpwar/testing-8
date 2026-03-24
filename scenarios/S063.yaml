@@ -1,0 +1,148 @@
+scenario_id: S063
+repo_id: testing-8
+title: Merge commit reverted with -m
+difficulty: 4
+primary_catalog_id: 63
+catalog_ids:
+- 63
+- 65
+- 67
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S063/base
+  target: scenario/S063/target
+  all_pairs:
+  - - scenario/S063/base
+    - scenario/S063/target
+  additional_sides:
+    feature: scenario/S063/feature
+fork_commit: '@S063.F'
+expected_conflicted_files:
+- erpkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S063/base
+- scenario/S063/feature
+- scenario/S063/target
+original_commits:
+- '@S063.f1'
+- '@S063.f2'
+derived_commits:
+- '@S063.m'
+- '@S063.rv'
+change_relationships:
+- a: '@S063.m'
+  b: '@S063.rv'
+  relation: reverted
+files:
+- erpkit/rules.py
+- tests/test_rules.py
+regions:
+- file: erpkit/rules.py
+  function: freight_surcharge_bp
+- file: erpkit/rules.py
+  function: backorder_hold_days
+testing_evidence: none
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- merge commit reverted with -m 1; reapplying the feature later needs the revert reverted
+safe_resolution_constraints:
+- do not re-merge the feature branch without reverting the revert
+human_review_required: false
+assertions:
+- type: parents
+  commit: '@S063.m'
+  count: 2
+- type: message_contains
+  commit: '@S063.rv'
+  text: Revert
+- type: ancestor
+  a: '@S063.f1'
+  b: branch:base
+  expect: true
+id: '63'
+sub_entries:
+- original_commits:
+  - '@S063.c65_c1'
+  derived_commits:
+  - '@S063.c65_rv'
+  - '@S063.c65_c4'
+  change_relationships:
+  - a: '@S063.c65_c1'
+    b: '@S063.c65_rv'
+    relation: reverted
+  - a: '@S063.c65_c1'
+    b: '@S063.c65_c4'
+    relation: identical
+  files:
+  - erpkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: erpkit/rules.py
+    function: depreciation_months
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - reverted change re-applied by cherry-pick of the original commit
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_equal
+    a: '@S063.c65_c1'
+    b: '@S063.c65_c4'
+  - type: trailer
+    commit: '@S063.c65_c4'
+    expect: valid
+    origin: '@S063.c65_c1'
+  id: 63.a
+  catalog_id: 65
+- original_commits:
+  - '@S063.c67_c1'
+  derived_commits:
+  - '@S063.c67_rv1'
+  - '@S063.c67_rv2'
+  change_relationships:
+  - a: '@S063.c67_c1'
+    b: '@S063.c67_rv1'
+    relation: reverted
+  - a: '@S063.c67_rv1'
+    b: '@S063.c67_rv2'
+    relation: reverted
+  files:
+  - erpkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: erpkit/rules.py
+    function: aging_bucket_days
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - revert of a revert; net state equals the original change
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: tree_equal
+    a: '@S063.c67_rv2'
+    b: '@S063.c67_c1'
+    file: erpkit/rules.py
+  id: 63.b
+  catalog_id: 67
+patch_ids:
+  '@S063.f1': eba9eaf1f299d1ee59ec4f60b8c3589e66249386
+  '@S063.f2': a53425f2e8dd031ec8f0f9561472842072a822b4
+  '@S063.m': 26c351ffba9fab56fbc9a9d111899919fdf6f9cc
+  '@S063.rv': b1e603af2839651e12ee23a228eece7318b753ce
+  '@S063.c65_c1': f98873ae24b0ac53275facbd884e93d7d3e5d036
+  '@S063.c65_rv': f838c51d5c9b7af00da1bbf4ff56be6437329a59
+  '@S063.c65_c4': f98873ae24b0ac53275facbd884e93d7d3e5d036
+  '@S063.c67_c1': b0627f2a802f3beca560c4cef0f6aa667b1d58e8
+  '@S063.c67_rv1': cbad0a715831842c98bf65cab677f6b436ef2b71
+  '@S063.c67_rv2': b0627f2a802f3beca560c4cef0f6aa667b1d58e8

@@ -1,0 +1,362 @@
+{
+  "scenario_id": "S083",
+  "repo_id": "testing-8",
+  "title": "Clean merge, failing integrated application",
+  "difficulty": 5,
+  "primary_catalog_id": 83,
+  "catalog_ids": [
+    83,
+    78,
+    81,
+    76,
+    26,
+    37
+  ],
+  "expected_git_outcome": "CLEAN_BUT_BROKEN",
+  "merge_pair": {
+    "base": "scenario/S083/base",
+    "target": "scenario/S083/target",
+    "all_pairs": [
+      [
+        "scenario/S083/base",
+        "scenario/S083/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+  "expected_conflicted_files": [],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S083/base",
+    "scenario/S083/target"
+  ],
+  "original_commits": [
+    "253100b868aa99a87ec950197807e86000f838f6"
+  ],
+  "derived_commits": [
+    "8d304efae6aa32d8f0688780876ac823f76ebde8"
+  ],
+  "change_relationships": [
+    {
+      "a": "253100b868aa99a87ec950197807e86000f838f6",
+      "b": "8d304efae6aa32d8f0688780876ac823f76ebde8",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "erpkit/contract.py",
+    "erpkit/consumer_83.py"
+  ],
+  "regions": [
+    {
+      "file": "erpkit/contract.py",
+      "function": "build_summary"
+    }
+  ],
+  "testing_evidence": "t1 PASSED; source changed again in t2, which has no record",
+  "deployment_evidence": "never deployed to prod",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "clean textual merge; the integrated code fails (new consumer reads the renamed key)"
+  ],
+  "safe_resolution_constraints": [
+    "Git cannot detect this; only the test run can"
+  ],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "merge_then_tests",
+      "expect": "fail",
+      "suites": [
+        "unit"
+      ]
+    }
+  ],
+  "id": "83",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "3bdc0381757d04bf7cbd326e9b45caae3dd3745c"
+      ],
+      "derived_commits": [
+        "b9669ef81fcb6a4bd1f35349eb569aae6d16ae03"
+      ],
+      "change_relationships": [
+        {
+          "a": "3bdc0381757d04bf7cbd326e9b45caae3dd3745c",
+          "b": "b9669ef81fcb6a4bd1f35349eb569aae6d16ae03",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "erpkit/contract.py",
+        "erpkit/consumer_78.py"
+      ],
+      "regions": [
+        {
+          "file": "erpkit/contract.py",
+          "function": "build_summary"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "clean merge; new caller still uses the old signature"
+      ],
+      "safe_resolution_constraints": [
+        "Git cannot detect this; only the test run can"
+      ],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "merge_then_tests",
+          "expect": "fail",
+          "suites": [
+            "unit"
+          ]
+        }
+      ],
+      "id": "83.a",
+      "catalog_id": 78
+    },
+    {
+      "original_commits": [
+        "39089f152c725e845539c1b5121b078551ebb120"
+      ],
+      "derived_commits": [
+        "e7ed0a8db7e89f8573db4ad9b1c2dce694df6446"
+      ],
+      "change_relationships": [
+        {
+          "a": "39089f152c725e845539c1b5121b078551ebb120",
+          "b": "e7ed0a8db7e89f8573db4ad9b1c2dce694df6446",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "stockmoves/migrations/0002_priority_81.py",
+        "stockmoves/migrations/0002_region_81.py",
+        "stockmoves/models.py"
+      ],
+      "regions": [
+        {
+          "file": "stockmoves/models.py",
+          "model": "StockMove"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "two migrations share a parent; Django reports multiple leaf nodes"
+      ],
+      "safe_resolution_constraints": [
+        "resolve with a merge migration (makemigrations --merge)"
+      ],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "migration_leaves",
+          "app": "stockmoves",
+          "expect_greater_than": 1
+        },
+        {
+          "type": "merge_then_tests",
+          "expect": "fail",
+          "suites": [
+            "unit"
+          ]
+        }
+      ],
+      "id": "83.b",
+      "catalog_id": 81
+    },
+    {
+      "original_commits": [
+        "3fd4911cd0a3e193e92302e534384d123623411a"
+      ],
+      "derived_commits": [
+        "f072f84bc7f989cb602dd739cd8826116650447f"
+      ],
+      "change_relationships": [
+        {
+          "a": "3fd4911cd0a3e193e92302e534384d123623411a",
+          "b": "f072f84bc7f989cb602dd739cd8826116650447f",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "stockmoves/models.py",
+        "stockmoves/api_extra.py"
+      ],
+      "regions": [
+        {
+          "file": "stockmoves/models.py",
+          "model": "StockMove",
+          "field": "amount_cents"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "clean merge; the new API view still uses the renamed model field"
+      ],
+      "safe_resolution_constraints": [
+        "Git cannot detect this; only the test run can"
+      ],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "merge_then_tests",
+          "expect": "fail",
+          "suites": [
+            "integration"
+          ]
+        }
+      ],
+      "id": "83.c",
+      "catalog_id": 76
+    },
+    {
+      "original_commits": [
+        "4515c521a3d87b5547f37b527d0b43b759dcae2b"
+      ],
+      "derived_commits": [
+        "fbf687e33779399e7879329fabc1cd051611a5ed"
+      ],
+      "change_relationships": [
+        {
+          "a": "4515c521a3d87b5547f37b527d0b43b759dcae2b",
+          "b": "fbf687e33779399e7879329fabc1cd051611a5ed",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "erpkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "erpkit/rules.py",
+          "function": "aging_bucket_days"
+        }
+      ],
+      "testing_evidence": "t1 PASSED; source changed again in t2, which has no record",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "tested code was modified afterwards"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "tree_differs",
+          "a": "4515c521a3d87b5547f37b527d0b43b759dcae2b",
+          "b": "fbf687e33779399e7879329fabc1cd051611a5ed",
+          "file": "erpkit/rules.py"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "fbf687e33779399e7879329fabc1cd051611a5ed",
+          "expect": "absent"
+        }
+      ],
+      "id": "83.d",
+      "catalog_id": 26
+    },
+    {
+      "original_commits": [
+        "3f1f00a7bcad0f3d4eadfdad77b60b8fd97269f4"
+      ],
+      "derived_commits": [
+        "38810aca232d1ede83a19f885a496d33bc2e4d08"
+      ],
+      "change_relationships": [
+        {
+          "a": "3f1f00a7bcad0f3d4eadfdad77b60b8fd97269f4",
+          "b": "38810aca232d1ede83a19f885a496d33bc2e4d08",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "erpkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "erpkit/rules.py",
+          "function": "approval_limit_cents"
+        }
+      ],
+      "testing_evidence": "t1 PASSED in uat",
+      "deployment_evidence": "never deployed to prod",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "uat-tested change is not in production"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "note",
+          "ref": "deploy",
+          "commit": "3f1f00a7bcad0f3d4eadfdad77b60b8fd97269f4",
+          "expect": "absent"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "3f1f00a7bcad0f3d4eadfdad77b60b8fd97269f4",
+          "expect": "present",
+          "fields": {
+            "env": "uat"
+          }
+        }
+      ],
+      "id": "83.e",
+      "catalog_id": 37
+    }
+  ],
+  "patch_ids": {
+    "@S083.k83b": "a8a9557d7727cffd96ebf24c2730d9393922ef3f",
+    "@S083.k83t": "c19e9fefb0ccef553711ce1e9db4c3b37698d04a",
+    "@S083.c78_k78b": "457b8d6509721efc4601a24c38dc86c9c9bfe409",
+    "@S083.c78_k78t": "fa0a7353044c5482f774ec14f8b7b0074e7569f6",
+    "@S083.c81_m81b": "e5c4f06604d2073cace780859d95fba41b6d6edd",
+    "@S083.c81_m81t": "f7275b8b37e03da541d361c57118f00cca52879c",
+    "@S083.c76_k76b": "f4606c56dc3f7db12b7c358d6820c20b03fcc131",
+    "@S083.c76_k76t": "dde365162a6261e77ac2df0ebb46be2cdced884f",
+    "@S083.c26_t1": "46e9a802bca9eab57be995615f8cc155aacb39d2",
+    "@S083.c26_t2": "3af56d2b7af623f510b68d603c5a3f03251077d8",
+    "@S083.c37_t1": "3a3ca976a204542d7e9e26f0a1655ff79e234c86",
+    "@S083.c37_b1": "001920d36ffe77323b5365cafc4d8c908e4dbf50"
+  },
+  "commit_labels": {
+    "S083.F": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+    "S083.c26_b1": "8f329946286f18ebbc79e10cb02c427ebe9b6989",
+    "S083.c26_t1": "4515c521a3d87b5547f37b527d0b43b759dcae2b",
+    "S083.c26_t2": "fbf687e33779399e7879329fabc1cd051611a5ed",
+    "S083.c37_b1": "38810aca232d1ede83a19f885a496d33bc2e4d08",
+    "S083.c37_t1": "3f1f00a7bcad0f3d4eadfdad77b60b8fd97269f4",
+    "S083.c76_k76b": "3fd4911cd0a3e193e92302e534384d123623411a",
+    "S083.c76_k76t": "f072f84bc7f989cb602dd739cd8826116650447f",
+    "S083.c78_k78b": "3bdc0381757d04bf7cbd326e9b45caae3dd3745c",
+    "S083.c78_k78t": "b9669ef81fcb6a4bd1f35349eb569aae6d16ae03",
+    "S083.c81_m81b": "39089f152c725e845539c1b5121b078551ebb120",
+    "S083.c81_m81t": "e7ed0a8db7e89f8573db4ad9b1c2dce694df6446",
+    "S083.k83b": "253100b868aa99a87ec950197807e86000f838f6",
+    "S083.k83t": "8d304efae6aa32d8f0688780876ac823f76ebde8"
+  }
+}

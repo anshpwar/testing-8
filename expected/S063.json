@@ -1,0 +1,234 @@
+{
+  "scenario_id": "S063",
+  "repo_id": "testing-8",
+  "title": "Merge commit reverted with -m",
+  "difficulty": 4,
+  "primary_catalog_id": 63,
+  "catalog_ids": [
+    63,
+    65,
+    67
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S063/base",
+    "target": "scenario/S063/target",
+    "all_pairs": [
+      [
+        "scenario/S063/base",
+        "scenario/S063/target"
+      ]
+    ],
+    "additional_sides": {
+      "feature": "scenario/S063/feature"
+    }
+  },
+  "fork_commit": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+  "expected_conflicted_files": [
+    "erpkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S063/base",
+    "scenario/S063/feature",
+    "scenario/S063/target"
+  ],
+  "original_commits": [
+    "ae6b7f8d67edcff32908e004a963d7ee71961212",
+    "613016d1529b6e9ed45376043b03ab81da7835a4"
+  ],
+  "derived_commits": [
+    "344efe6028554a90269410c196a49f5028ce19dd",
+    "b9a1443ab6e6fd1bc37d70b2515ab85719d7c6d9"
+  ],
+  "change_relationships": [
+    {
+      "a": "344efe6028554a90269410c196a49f5028ce19dd",
+      "b": "b9a1443ab6e6fd1bc37d70b2515ab85719d7c6d9",
+      "relation": "reverted"
+    }
+  ],
+  "files": [
+    "erpkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "erpkit/rules.py",
+      "function": "freight_surcharge_bp"
+    },
+    {
+      "file": "erpkit/rules.py",
+      "function": "backorder_hold_days"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "merge commit reverted with -m 1; reapplying the feature later needs the revert reverted"
+  ],
+  "safe_resolution_constraints": [
+    "do not re-merge the feature branch without reverting the revert"
+  ],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "parents",
+      "commit": "344efe6028554a90269410c196a49f5028ce19dd",
+      "count": 2
+    },
+    {
+      "type": "message_contains",
+      "commit": "b9a1443ab6e6fd1bc37d70b2515ab85719d7c6d9",
+      "text": "Revert"
+    },
+    {
+      "type": "ancestor",
+      "a": "ae6b7f8d67edcff32908e004a963d7ee71961212",
+      "b": "branch:base",
+      "expect": true
+    }
+  ],
+  "id": "63",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "09990f4623742fb1986b15e446b788d654aa9ced"
+      ],
+      "derived_commits": [
+        "f27826ec02fff4fd9dc7ac647aef4451c70af448",
+        "b5d74ac5a026381b60b20e63d5d4f40d51cac8a3"
+      ],
+      "change_relationships": [
+        {
+          "a": "09990f4623742fb1986b15e446b788d654aa9ced",
+          "b": "f27826ec02fff4fd9dc7ac647aef4451c70af448",
+          "relation": "reverted"
+        },
+        {
+          "a": "09990f4623742fb1986b15e446b788d654aa9ced",
+          "b": "b5d74ac5a026381b60b20e63d5d4f40d51cac8a3",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "erpkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "erpkit/rules.py",
+          "function": "depreciation_months"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "reverted change re-applied by cherry-pick of the original commit"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_equal",
+          "a": "09990f4623742fb1986b15e446b788d654aa9ced",
+          "b": "b5d74ac5a026381b60b20e63d5d4f40d51cac8a3"
+        },
+        {
+          "type": "trailer",
+          "commit": "b5d74ac5a026381b60b20e63d5d4f40d51cac8a3",
+          "expect": "valid",
+          "origin": "09990f4623742fb1986b15e446b788d654aa9ced"
+        }
+      ],
+      "id": "63.a",
+      "catalog_id": 65
+    },
+    {
+      "original_commits": [
+        "925c76e9ecaeac9a67189e48a07959b71646899b"
+      ],
+      "derived_commits": [
+        "ecfd1ebe4aba819cd496b3c27e5437de9e6c76a6",
+        "09368c0c9925d0cac8dc3f6cd1b7656937dbe202"
+      ],
+      "change_relationships": [
+        {
+          "a": "925c76e9ecaeac9a67189e48a07959b71646899b",
+          "b": "ecfd1ebe4aba819cd496b3c27e5437de9e6c76a6",
+          "relation": "reverted"
+        },
+        {
+          "a": "ecfd1ebe4aba819cd496b3c27e5437de9e6c76a6",
+          "b": "09368c0c9925d0cac8dc3f6cd1b7656937dbe202",
+          "relation": "reverted"
+        }
+      ],
+      "files": [
+        "erpkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "erpkit/rules.py",
+          "function": "aging_bucket_days"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "revert of a revert; net state equals the original change"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "tree_equal",
+          "a": "09368c0c9925d0cac8dc3f6cd1b7656937dbe202",
+          "b": "925c76e9ecaeac9a67189e48a07959b71646899b",
+          "file": "erpkit/rules.py"
+        }
+      ],
+      "id": "63.b",
+      "catalog_id": 67
+    }
+  ],
+  "patch_ids": {
+    "@S063.f1": "eba9eaf1f299d1ee59ec4f60b8c3589e66249386",
+    "@S063.f2": "a53425f2e8dd031ec8f0f9561472842072a822b4",
+    "@S063.m": "26c351ffba9fab56fbc9a9d111899919fdf6f9cc",
+    "@S063.rv": "b1e603af2839651e12ee23a228eece7318b753ce",
+    "@S063.c65_c1": "f98873ae24b0ac53275facbd884e93d7d3e5d036",
+    "@S063.c65_rv": "f838c51d5c9b7af00da1bbf4ff56be6437329a59",
+    "@S063.c65_c4": "f98873ae24b0ac53275facbd884e93d7d3e5d036",
+    "@S063.c67_c1": "b0627f2a802f3beca560c4cef0f6aa667b1d58e8",
+    "@S063.c67_rv1": "cbad0a715831842c98bf65cab677f6b436ef2b71",
+    "@S063.c67_rv2": "b0627f2a802f3beca560c4cef0f6aa667b1d58e8"
+  },
+  "commit_labels": {
+    "S063.F": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+    "S063.b2": "db45f26a2770ca30a3a7e018735f06546f695888",
+    "S063.c65_c1": "09990f4623742fb1986b15e446b788d654aa9ced",
+    "S063.c65_c4": "b5d74ac5a026381b60b20e63d5d4f40d51cac8a3",
+    "S063.c65_rv": "f27826ec02fff4fd9dc7ac647aef4451c70af448",
+    "S063.c65_t1": "db598b64fcd559b402d2f48675c0c5963b8aecba",
+    "S063.c67_c1": "925c76e9ecaeac9a67189e48a07959b71646899b",
+    "S063.c67_rv1": "ecfd1ebe4aba819cd496b3c27e5437de9e6c76a6",
+    "S063.c67_rv2": "09368c0c9925d0cac8dc3f6cd1b7656937dbe202",
+    "S063.c67_t1": "b1f1a8279230302bc04c8444aaaec9df39ea33cc",
+    "S063.f1": "ae6b7f8d67edcff32908e004a963d7ee71961212",
+    "S063.f2": "613016d1529b6e9ed45376043b03ab81da7835a4",
+    "S063.m": "344efe6028554a90269410c196a49f5028ce19dd",
+    "S063.pre": "83f77057cc218ebc8714dbf0a780e4a6124737aa",
+    "S063.rv": "b9a1443ab6e6fd1bc37d70b2515ab85719d7c6d9",
+    "S063.t1": "2b7a9db5740436ce8b7d6f00c475cbef6a652b62"
+  }
+}

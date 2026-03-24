@@ -1,0 +1,88 @@
+{
+  "scenario_id": "S033",
+  "repo_id": "testing-8",
+  "title": "Interrupted test run on one side",
+  "difficulty": 2,
+  "primary_catalog_id": 33,
+  "catalog_ids": [
+    33
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S033/base",
+    "target": "scenario/S033/target",
+    "all_pairs": [
+      [
+        "scenario/S033/base",
+        "scenario/S033/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+  "expected_conflicted_files": [
+    "erpkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S033/base",
+    "scenario/S033/target"
+  ],
+  "original_commits": [
+    "96c655e7bcad8fefd8df0aeba14a425edf232cdf"
+  ],
+  "derived_commits": [
+    "48edf473fad8cdbf27f2273622c0dae8bff1daee"
+  ],
+  "change_relationships": [
+    {
+      "a": "96c655e7bcad8fefd8df0aeba14a425edf232cdf",
+      "b": "48edf473fad8cdbf27f2273622c0dae8bff1daee",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "erpkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "erpkit/rules.py",
+      "function": "approval_limit_cents"
+    }
+  ],
+  "testing_evidence": "t1 run INTERRUPTED, no finish time",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "incomplete run is not a pass"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "note",
+      "ref": "ci",
+      "commit": "96c655e7bcad8fefd8df0aeba14a425edf232cdf",
+      "expect": "present",
+      "fields": {
+        "status": "INTERRUPTED",
+        "finished_at": null
+      }
+    }
+  ],
+  "id": "33",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S033.t1": "3a3ca976a204542d7e9e26f0a1655ff79e234c86",
+    "@S033.b1": "0c95b2eeacfc0bd921a375487491012696188b67"
+  },
+  "commit_labels": {
+    "S033.F": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+    "S033.b1": "48edf473fad8cdbf27f2273622c0dae8bff1daee",
+    "S033.t1": "96c655e7bcad8fefd8df0aeba14a425edf232cdf"
+  }
+}

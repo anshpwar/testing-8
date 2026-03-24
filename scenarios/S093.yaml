@@ -1,0 +1,128 @@
+scenario_id: S093
+repo_id: testing-8
+title: Symlink and mode change against a content edit
+difficulty: 4
+primary_catalog_id: 93
+catalog_ids:
+- 93
+- 71
+- 95
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S093/base
+  target: scenario/S093/target
+  all_pairs:
+  - - scenario/S093/base
+    - scenario/S093/target
+  additional_sides: {}
+fork_commit: '@S093.F'
+expected_conflicted_files:
+- erpkit/helpers.py
+- erpkit/rules.py
+- generated/manifest.json
+- tests/test_rules.py
+- tools/gen_manifest.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S093/base
+- scenario/S093/target
+original_commits:
+- '@S093.t1'
+derived_commits:
+- '@S093.b1'
+change_relationships:
+- a: '@S093.b1'
+  b: '@S093.t1'
+  relation: unrelated
+files:
+- tools/gen_manifest.py
+- tools/gen_manifest_impl.py
+regions:
+- file: tools/gen_manifest.py
+  kind: type change vs content edit
+testing_evidence: none
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- file replaced by a symlink on one side, content edited on the other
+safe_resolution_constraints:
+- deleting the module drops the target's guard fix
+- resolve rules.py first, then rerun python tools/gen_manifest.py
+human_review_required: false
+assertions:
+- type: mode_is
+  commit: '@S093.b1'
+  path: tools/gen_manifest.py
+  mode: '120000'
+- type: mode_is
+  commit: '@S093.b1'
+  path: tools/gen_manifest_impl.py
+  mode: '100755'
+id: '93'
+sub_entries:
+- original_commits:
+  - '@S093.c71_t1'
+  derived_commits:
+  - '@S093.c71_b1'
+  change_relationships:
+  - a: '@S093.c71_b1'
+    b: '@S093.c71_t1'
+    relation: unrelated
+  files:
+  - erpkit/helpers.py
+  - tests/test_helpers.py
+  regions:
+  - file: erpkit/helpers.py
+    function: clip
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - one side modifies a file the other deleted
+  safe_resolution_constraints:
+  - deleting the module drops the target's guard fix
+  human_review_required: false
+  assertions: []
+  id: 93.a
+  catalog_id: 71
+- original_commits:
+  - '@S093.c95_b1'
+  derived_commits:
+  - '@S093.c95_t1'
+  change_relationships:
+  - a: '@S093.c95_b1'
+    b: '@S093.c95_t1'
+    relation: unrelated
+  files:
+  - erpkit/rules.py
+  - tests/test_rules.py
+  - generated/manifest.json
+  regions:
+  - file: erpkit/rules.py
+    function: lot_expiry_warning_days
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - generated file conflicts; regenerate after resolving the source
+  safe_resolution_constraints:
+  - resolve rules.py first, then rerun python tools/gen_manifest.py
+  human_review_required: false
+  assertions:
+  - type: generated_matches_source
+    commit: '@S093.c95_b1'
+  - type: generated_matches_source
+    commit: '@S093.c95_t1'
+  id: 93.b
+  catalog_id: 95
+patch_ids:
+  '@S093.t1': f48d6515c94d08ebe466881622f5033267b01106
+  '@S093.b1': ca77ad8f44606e7501f03032f75610ae0485b864
+  '@S093.c71_t1': 1db8aee15e8c24efc1d2f5bd47caeee3bc1f29fa
+  '@S093.c71_b1': f3cb0a3d32ed614ee338f3afb0d0ebcccf3d89bb
+  '@S093.c95_b1': 7e0bc618bc7fe7748e0c5c89b76f3a574d41d2d2
+  '@S093.c95_t1': 5ee7dd2c14c1fa78df82ba0316b4989b2c652e49

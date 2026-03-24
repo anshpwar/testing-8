@@ -1,0 +1,90 @@
+{
+  "scenario_id": "S057",
+  "repo_id": "testing-8",
+  "title": "Author and committer rewritten, patch unchanged",
+  "difficulty": 3,
+  "primary_catalog_id": 57,
+  "catalog_ids": [
+    57
+  ],
+  "expected_git_outcome": "EVIDENCE_ONLY",
+  "merge_pair": {
+    "base": "scenario/S057/base",
+    "target": "scenario/S057/target",
+    "all_pairs": [
+      [
+        "scenario/S057/base",
+        "scenario/S057/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+  "expected_conflicted_files": [],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S057/base",
+    "scenario/S057/target"
+  ],
+  "original_commits": [
+    "7a8a59405f70a24758595a7a352eb0d93e9f11d0"
+  ],
+  "derived_commits": [
+    "904919a078b505ef66c48465253e01c0624297a8"
+  ],
+  "change_relationships": [
+    {
+      "a": "7a8a59405f70a24758595a7a352eb0d93e9f11d0",
+      "b": "904919a078b505ef66c48465253e01c0624297a8",
+      "relation": "identical"
+    }
+  ],
+  "files": [
+    "erpkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "erpkit/rules.py",
+      "function": "payment_terms_days"
+    }
+  ],
+  "testing_evidence": "ci PASSED recorded for c1 only",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "identities changed; patch unchanged"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "patch_id_equal",
+      "a": "7a8a59405f70a24758595a7a352eb0d93e9f11d0",
+      "b": "904919a078b505ef66c48465253e01c0624297a8"
+    },
+    {
+      "type": "author_differs",
+      "a": "7a8a59405f70a24758595a7a352eb0d93e9f11d0",
+      "b": "904919a078b505ef66c48465253e01c0624297a8"
+    },
+    {
+      "type": "commit_differs",
+      "a": "7a8a59405f70a24758595a7a352eb0d93e9f11d0",
+      "b": "904919a078b505ef66c48465253e01c0624297a8"
+    }
+  ],
+  "id": "57",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S057.c1": "aaded7b34a1a56507c606cc9f9676b59a88efe7a",
+    "@S057.c2": "aaded7b34a1a56507c606cc9f9676b59a88efe7a"
+  },
+  "commit_labels": {
+    "S057.F": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+    "S057.c1": "7a8a59405f70a24758595a7a352eb0d93e9f11d0",
+    "S057.c2": "904919a078b505ef66c48465253e01c0624297a8"
+  }
+}

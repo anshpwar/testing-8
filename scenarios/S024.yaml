@@ -1,0 +1,60 @@
+scenario_id: S024
+repo_id: testing-8
+title: Unit tests pass while integration tests fail
+difficulty: 3
+primary_catalog_id: 24
+catalog_ids:
+- 24
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S024/base
+  target: scenario/S024/target
+  all_pairs:
+  - - scenario/S024/base
+    - scenario/S024/target
+  additional_sides: {}
+fork_commit: '@S024.F'
+expected_conflicted_files:
+- erpkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S024/base
+- scenario/S024/target
+original_commits:
+- '@S024.b2'
+derived_commits:
+- '@S024.b1'
+change_relationships:
+- a: '@S024.b1'
+  b: '@S024.b2'
+  relation: unrelated
+files:
+- erpkit/rules.py
+- tests/test_rules.py
+regions:
+- file: erpkit/rules.py
+  function: safety_stock_days
+testing_evidence: 'b2: unit PASSED, integration FAILED (record status FAILED with suite_results)'
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- unit suite alone is not sufficient evidence
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: real_tests
+  commit: '@S024.b2'
+  suite: unit
+  expect: passed
+- type: real_tests
+  commit: '@S024.b2'
+  suite: integration
+  expect: failed
+id: '24'
+sub_entries: []
+patch_ids:
+  '@S024.b2': e7f38659da5257f57efe96938ded39fb94daa740
+  '@S024.b1': 69a137d2218091e02398878a850335f3e6956daa

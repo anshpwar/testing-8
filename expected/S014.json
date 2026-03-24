@@ -1,0 +1,112 @@
+{
+  "scenario_id": "S014",
+  "repo_id": "testing-8",
+  "title": "One fix backported to three release lines",
+  "difficulty": 3,
+  "primary_catalog_id": 14,
+  "catalog_ids": [
+    14
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S014/base",
+    "target": "scenario/S014/target",
+    "all_pairs": [
+      [
+        "scenario/S014/base",
+        "scenario/S014/target"
+      ]
+    ],
+    "additional_sides": {
+      "rel2": "scenario/S014/rel2",
+      "rel3": "scenario/S014/rel3"
+    }
+  },
+  "fork_commit": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+  "expected_conflicted_files": [
+    "erpkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S014/base",
+    "scenario/S014/rel2",
+    "scenario/S014/rel3",
+    "scenario/S014/target"
+  ],
+  "original_commits": [
+    "aa45779d1cbf43a5ca89a6cda75f54a1faf6426c"
+  ],
+  "derived_commits": [
+    "d4508e847ff1e6103e8ff8768f0682bb30e704bc",
+    "1033a5a6ca5820c5ee8a1ff12488c098544d4d6f",
+    "da1268deb611c3fb81fb580a5664443de2a4fb0d"
+  ],
+  "change_relationships": [
+    {
+      "a": "aa45779d1cbf43a5ca89a6cda75f54a1faf6426c",
+      "b": "d4508e847ff1e6103e8ff8768f0682bb30e704bc",
+      "relation": "identical"
+    },
+    {
+      "a": "aa45779d1cbf43a5ca89a6cda75f54a1faf6426c",
+      "b": "1033a5a6ca5820c5ee8a1ff12488c098544d4d6f",
+      "relation": "identical"
+    },
+    {
+      "a": "aa45779d1cbf43a5ca89a6cda75f54a1faf6426c",
+      "b": "da1268deb611c3fb81fb580a5664443de2a4fb0d",
+      "relation": "identical"
+    }
+  ],
+  "files": [
+    "erpkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "erpkit/rules.py",
+      "function": "audit_sample_size"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "side refs scenario/S014/rel2 and /rel3 hold the other backports",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "same change backported to three release lines"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "patch_id_equal",
+      "a": "1033a5a6ca5820c5ee8a1ff12488c098544d4d6f",
+      "b": "da1268deb611c3fb81fb580a5664443de2a4fb0d"
+    },
+    {
+      "type": "trailer",
+      "commit": "da1268deb611c3fb81fb580a5664443de2a4fb0d",
+      "expect": "valid",
+      "origin": "aa45779d1cbf43a5ca89a6cda75f54a1faf6426c"
+    }
+  ],
+  "id": "14",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S014.t1": "04cac08ac1ab9db0e2d1be448015e975a9d60d01",
+    "@S014.b1": "04cac08ac1ab9db0e2d1be448015e975a9d60d01",
+    "@S014.b2": "04cac08ac1ab9db0e2d1be448015e975a9d60d01",
+    "@S014.b3": "04cac08ac1ab9db0e2d1be448015e975a9d60d01"
+  },
+  "commit_labels": {
+    "S014.F": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+    "S014.b1": "d4508e847ff1e6103e8ff8768f0682bb30e704bc",
+    "S014.b2": "1033a5a6ca5820c5ee8a1ff12488c098544d4d6f",
+    "S014.b3": "da1268deb611c3fb81fb580a5664443de2a4fb0d",
+    "S014.b4": "c4dc67d88c8a1df9bb64a21d023ece9850f3ee33",
+    "S014.t1": "aa45779d1cbf43a5ca89a6cda75f54a1faf6426c",
+    "S014.t2": "22eaefbcedd37c6cfea8998a423d31c52c7b1ecc"
+  }
+}

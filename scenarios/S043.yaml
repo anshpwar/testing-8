@@ -1,0 +1,60 @@
+scenario_id: S043
+repo_id: testing-8
+title: Repository cloned without its notes
+difficulty: 2
+primary_catalog_id: 43
+catalog_ids:
+- 43
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S033/base
+  target: scenario/S033/target
+  all_pairs:
+  - - scenario/S033/base
+    - scenario/S033/target
+  additional_sides: {}
+fork_commit: '@S033.F'
+expected_conflicted_files:
+- erpkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile:
+  name: no-notes
+  drop_notes: true
+  effect: no refs/notes/* in the clone
+sits_on:
+- S033
+branches:
+- scenario/S033/base
+- scenario/S033/target
+id: '43'
+original_commits:
+- '@S033.t1'
+derived_commits:
+- '@S033.b1'
+change_relationships:
+- a: '@S033.t1'
+  b: '@S033.b1'
+  relation: unrelated
+files:
+- erpkit/rules.py
+- tests/test_rules.py
+regions:
+- file: erpkit/rules.py
+  function: approval_limit_cents
+testing_evidence: t1 run INTERRUPTED, no finish time
+deployment_evidence: none
+metadata_availability: no refs/notes/* in the clone
+known_uncertainty: evidence is reachable only as far as the clone profile allows
+expected_warnings:
+- 'clone profile no-notes: no refs/notes/* in the clone'
+- incomplete run is not a pass
+safe_resolution_constraints: []
+human_review_required: true
+assertions:
+- type: profile_effect
+  profile: no-notes
+sub_entries: []
+patch_ids:
+  '@S033.t1': 3a3ca976a204542d7e9e26f0a1655ff79e234c86
+  '@S033.b1': 0c95b2eeacfc0bd921a375487491012696188b67

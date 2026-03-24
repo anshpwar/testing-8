@@ -1,0 +1,50 @@
+scenario_id: S073
+repo_id: testing-8
+title: Binary rate table changed on both sides
+difficulty: 1
+primary_catalog_id: 73
+catalog_ids:
+- 73
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S073/base
+  target: scenario/S073/target
+  all_pairs:
+  - - scenario/S073/base
+    - scenario/S073/target
+  additional_sides: {}
+fork_commit: '@S073.F'
+expected_conflicted_files:
+- fixtures/rate_table.bin
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S073/base
+- scenario/S073/target
+original_commits:
+- '@S073.b1'
+derived_commits:
+- '@S073.t1'
+change_relationships:
+- a: '@S073.b1'
+  b: '@S073.t1'
+  relation: unrelated
+files:
+- fixtures/rate_table.bin
+regions:
+- file: fixtures/rate_table.bin
+  kind: binary
+testing_evidence: none
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- binary file changed on both sides; cannot be merged textually
+safe_resolution_constraints: []
+human_review_required: true
+assertions: []
+id: '73'
+sub_entries: []
+patch_ids:
+  '@S073.b1': 994ea9fd752c4d980ab388851943e00f593c5040
+  '@S073.t1': 82b7f4dc8616e6195c7e3dccef5ce8a219bd949a

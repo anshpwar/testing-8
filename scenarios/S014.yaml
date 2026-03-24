@@ -1,0 +1,73 @@
+scenario_id: S014
+repo_id: testing-8
+title: One fix backported to three release lines
+difficulty: 3
+primary_catalog_id: 14
+catalog_ids:
+- 14
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S014/base
+  target: scenario/S014/target
+  all_pairs:
+  - - scenario/S014/base
+    - scenario/S014/target
+  additional_sides:
+    rel2: scenario/S014/rel2
+    rel3: scenario/S014/rel3
+fork_commit: '@S014.F'
+expected_conflicted_files:
+- erpkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S014/base
+- scenario/S014/rel2
+- scenario/S014/rel3
+- scenario/S014/target
+original_commits:
+- '@S014.t1'
+derived_commits:
+- '@S014.b1'
+- '@S014.b2'
+- '@S014.b3'
+change_relationships:
+- a: '@S014.t1'
+  b: '@S014.b1'
+  relation: identical
+- a: '@S014.t1'
+  b: '@S014.b2'
+  relation: identical
+- a: '@S014.t1'
+  b: '@S014.b3'
+  relation: identical
+files:
+- erpkit/rules.py
+- tests/test_rules.py
+regions:
+- file: erpkit/rules.py
+  function: audit_sample_size
+testing_evidence: none
+deployment_evidence: none
+metadata_availability: side refs scenario/S014/rel2 and /rel3 hold the other backports
+known_uncertainty: none
+expected_warnings:
+- same change backported to three release lines
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: patch_id_equal
+  a: '@S014.b2'
+  b: '@S014.b3'
+- type: trailer
+  commit: '@S014.b3'
+  expect: valid
+  origin: '@S014.t1'
+id: '14'
+sub_entries: []
+patch_ids:
+  '@S014.t1': 04cac08ac1ab9db0e2d1be448015e975a9d60d01
+  '@S014.b1': 04cac08ac1ab9db0e2d1be448015e975a9d60d01
+  '@S014.b2': 04cac08ac1ab9db0e2d1be448015e975a9d60d01
+  '@S014.b3': 04cac08ac1ab9db0e2d1be448015e975a9d60d01

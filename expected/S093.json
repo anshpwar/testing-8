@@ -1,0 +1,195 @@
+{
+  "scenario_id": "S093",
+  "repo_id": "testing-8",
+  "title": "Symlink and mode change against a content edit",
+  "difficulty": 4,
+  "primary_catalog_id": 93,
+  "catalog_ids": [
+    93,
+    71,
+    95
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S093/base",
+    "target": "scenario/S093/target",
+    "all_pairs": [
+      [
+        "scenario/S093/base",
+        "scenario/S093/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+  "expected_conflicted_files": [
+    "erpkit/helpers.py",
+    "erpkit/rules.py",
+    "generated/manifest.json",
+    "tests/test_rules.py",
+    "tools/gen_manifest.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S093/base",
+    "scenario/S093/target"
+  ],
+  "original_commits": [
+    "1253fbdf662b8b3ed25c5de805d7d9e40eeedd10"
+  ],
+  "derived_commits": [
+    "64d965842806c47de9d69e48fa3f165c0a97cd5f"
+  ],
+  "change_relationships": [
+    {
+      "a": "64d965842806c47de9d69e48fa3f165c0a97cd5f",
+      "b": "1253fbdf662b8b3ed25c5de805d7d9e40eeedd10",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "tools/gen_manifest.py",
+    "tools/gen_manifest_impl.py"
+  ],
+  "regions": [
+    {
+      "file": "tools/gen_manifest.py",
+      "kind": "type change vs content edit"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "file replaced by a symlink on one side, content edited on the other"
+  ],
+  "safe_resolution_constraints": [
+    "deleting the module drops the target's guard fix",
+    "resolve rules.py first, then rerun python tools/gen_manifest.py"
+  ],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "mode_is",
+      "commit": "64d965842806c47de9d69e48fa3f165c0a97cd5f",
+      "path": "tools/gen_manifest.py",
+      "mode": "120000"
+    },
+    {
+      "type": "mode_is",
+      "commit": "64d965842806c47de9d69e48fa3f165c0a97cd5f",
+      "path": "tools/gen_manifest_impl.py",
+      "mode": "100755"
+    }
+  ],
+  "id": "93",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "bafa208b3604c51b95609b0030640b559cf82d8e"
+      ],
+      "derived_commits": [
+        "61393583913882dbbcedf3f15e8c4a79e34da9f7"
+      ],
+      "change_relationships": [
+        {
+          "a": "61393583913882dbbcedf3f15e8c4a79e34da9f7",
+          "b": "bafa208b3604c51b95609b0030640b559cf82d8e",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "erpkit/helpers.py",
+        "tests/test_helpers.py"
+      ],
+      "regions": [
+        {
+          "file": "erpkit/helpers.py",
+          "function": "clip"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "one side modifies a file the other deleted"
+      ],
+      "safe_resolution_constraints": [
+        "deleting the module drops the target's guard fix"
+      ],
+      "human_review_required": false,
+      "assertions": [],
+      "id": "93.a",
+      "catalog_id": 71
+    },
+    {
+      "original_commits": [
+        "3f1b4a26599e85cfb8788443b2c9b0675e5795d4"
+      ],
+      "derived_commits": [
+        "42841f141ae530ca382531855cd825f5fee2da0c"
+      ],
+      "change_relationships": [
+        {
+          "a": "3f1b4a26599e85cfb8788443b2c9b0675e5795d4",
+          "b": "42841f141ae530ca382531855cd825f5fee2da0c",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "erpkit/rules.py",
+        "tests/test_rules.py",
+        "generated/manifest.json"
+      ],
+      "regions": [
+        {
+          "file": "erpkit/rules.py",
+          "function": "lot_expiry_warning_days"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "generated file conflicts; regenerate after resolving the source"
+      ],
+      "safe_resolution_constraints": [
+        "resolve rules.py first, then rerun python tools/gen_manifest.py"
+      ],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "generated_matches_source",
+          "commit": "3f1b4a26599e85cfb8788443b2c9b0675e5795d4"
+        },
+        {
+          "type": "generated_matches_source",
+          "commit": "42841f141ae530ca382531855cd825f5fee2da0c"
+        }
+      ],
+      "id": "93.b",
+      "catalog_id": 95
+    }
+  ],
+  "patch_ids": {
+    "@S093.t1": "f48d6515c94d08ebe466881622f5033267b01106",
+    "@S093.b1": "ca77ad8f44606e7501f03032f75610ae0485b864",
+    "@S093.c71_t1": "1db8aee15e8c24efc1d2f5bd47caeee3bc1f29fa",
+    "@S093.c71_b1": "f3cb0a3d32ed614ee338f3afb0d0ebcccf3d89bb",
+    "@S093.c95_b1": "7e0bc618bc7fe7748e0c5c89b76f3a574d41d2d2",
+    "@S093.c95_t1": "5ee7dd2c14c1fa78df82ba0316b4989b2c652e49"
+  },
+  "commit_labels": {
+    "S093.F": "63e9123eca277e225adce4e54eb1d4a71f1bcf23",
+    "S093.b1": "64d965842806c47de9d69e48fa3f165c0a97cd5f",
+    "S093.c71_b1": "61393583913882dbbcedf3f15e8c4a79e34da9f7",
+    "S093.c71_t1": "bafa208b3604c51b95609b0030640b559cf82d8e",
+    "S093.c95_b1": "3f1b4a26599e85cfb8788443b2c9b0675e5795d4",
+    "S093.c95_t1": "42841f141ae530ca382531855cd825f5fee2da0c",
+    "S093.t1": "1253fbdf662b8b3ed25c5de805d7d9e40eeedd10"
+  }
+}
